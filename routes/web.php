@@ -13,8 +13,12 @@ Route::get('/', function () {
 Route::get('/dashboard', [BookingController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Booking Routes
-Route::get('/book-now', BookNow::class)->name('book-now'); // Show booking page
-Route::post('/book-now', [BookingController::class, 'store'])->name('book.now'); // Handle form submission
+Route::get('/book-now', BookNow::class)->name('book-now');
+Route::post('/book-now', [BookingController::class, 'store'])->name('book.now');
+
+//edit and delete
+Route::get('/bookings/{id}/edit', [BookingController::class, 'edit'])->name('edit.booking');
+Route::delete('/bookings/{id}', [BookingController::class, 'destroy'])->name('delete.booking');
 
 // Authenticated Routes
 Route::middleware('auth')->group(function () {

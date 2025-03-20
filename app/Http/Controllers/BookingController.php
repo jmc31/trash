@@ -47,4 +47,20 @@ class BookingController extends Controller
         $bookings = Booking::latest()->get();
         return view('dashboard', compact('bookings'));
     }
+
+    // Edit Booking Form
+    public function edit($id)
+    {
+        $booking = Booking::findOrFail($id);
+        return view('edit-booking', compact('booking'));
+    }
+
+    // Delete Booking
+    public function destroy($id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Booking deleted successfully.');
+    }
 }
