@@ -3,17 +3,20 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\BookNow;
+use App\Http\Controllers\BookingController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Dashboard Route
+Route::get('/dashboard', [BookingController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/book-now', BookNow::class)->name('book-now');
+// Booking Routes
+Route::get('/book-now', BookNow::class)->name('book-now'); // Show booking page
+Route::post('/book-now', [BookingController::class, 'store'])->name('book.now'); // Handle form submission
 
+// Authenticated Routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -1,46 +1,36 @@
-<x-app-layout>
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
-        <div class="max-w-7xl mx-auto">
+<div class="max-w-6xl mx-auto mt-10 p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+    <h2 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-6">Flight Bookings</h2>
 
-            <!-- Dashboard Header -->
-            <div class="mb-6">
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
-                <p class="text-gray-600 dark:text-gray-400">Manage your flights efficiently.</p>
-            </div>
-
-            <!-- Grid Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-                <!-- Booked Flights -->
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Booked Flights</h2>
-                    <div class="h-32 flex items-center justify-center text-gray-500 dark:text-gray-400">
-                        No Data Available
-                    </div>
-                </div>
-
-                <!-- Available Flights -->
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Available Flights</h2>
-                    <div class="h-32 flex items-center justify-center text-gray-500 dark:text-gray-400">
-                        No Data Available
-                    </div>
-                </div>
-
-                <!-- Quick Actions -->
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h2>
-                    <div class="flex flex-col space-y-3">
-                        <a href="#" class="block w-full px-4 py-2 text-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-md font-semibold text-sm">
-                            Book a Flight
-                        </a>
-                        <a href="#" class="block w-full px-4 py-2 text-center text-gray-900 dark:text-white bg-gray-200 dark:bg-gray-700 rounded-md font-semibold text-sm">
-                            View Profile
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+    <table class="w-full border-collapse border border-gray-300 dark:border-gray-600">
+        <thead>
+            <tr class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white">
+                <th class="border px-4 py-2">Name</th>
+                <th class="border px-4 py-2">Email</th>
+                <th class="border px-4 py-2">Phone</th>
+                <th class="border px-4 py-2">Trip Type</th>
+                <th class="border px-4 py-2">Departure</th>
+                <th class="border px-4 py-2">Destination</th>
+                <th class="border px-4 py-2">Departure Date</th>
+                <th class="border px-4 py-2">Return Date</th>
+                <th class="border px-4 py-2">Seat Class</th>
+                <th class="border px-4 py-2">Seat Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($bookings as $booking)
+                <tr class="border-b dark:border-gray-600">
+                    <td class="border px-4 py-2">{{ $booking->name }}</td>
+                    <td class="border px-4 py-2">{{ $booking->email }}</td>
+                    <td class="border px-4 py-2">{{ $booking->phone }}</td>
+                    <td class="border px-4 py-2">{{ ucfirst($booking->trip_type) }}</td>
+                    <td class="border px-4 py-2">{{ $booking->departure }}</td>
+                    <td class="border px-4 py-2">{{ $booking->destination }}</td>
+                    <td class="border px-4 py-2">{{ $booking->departure_date }}</td>
+                    <td class="border px-4 py-2">{{ $booking->return_date ?? 'N/A' }}</td>
+                    <td class="border px-4 py-2">{{ ucfirst($booking->seat_class) }}</td>
+                    <td class="border px-4 py-2">{{ $booking->seat_number }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
