@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\BookNow;
 use App\Http\Controllers\BookingController;
+use App\Http\Livewire\EditBooking;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +20,8 @@ Route::post('/book-now', [BookingController::class, 'store'])->name('book.now');
 //edit and delete
 Route::get('/bookings/{id}/edit', [BookingController::class, 'edit'])->name('edit.booking');
 Route::delete('/bookings/{id}', [BookingController::class, 'destroy'])->name('delete.booking');
+
+
 
 // Authenticated Routes
 Route::middleware('auth')->group(function () {
